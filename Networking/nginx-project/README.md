@@ -41,6 +41,9 @@ Verify Nginx is running:
 
 curl localhost:80
 cat /etc/nginx/nginx.conf
+```bash
+
+
 🌍 Domain & DNS Setup
 Using Cloudflare DNS:
 
@@ -88,5 +91,7 @@ yum update
 yum install nginx
 systemctl start nginx
 systemctl stop nginx
+
+
 ⚠️ Note: Running as root (sudo su) is not best practice.
 It’s better to use sudo on a per-command basis for security.
