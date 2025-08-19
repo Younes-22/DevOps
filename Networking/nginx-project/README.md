@@ -41,7 +41,7 @@ Verify Nginx is running:
 
 curl localhost:80
 cat /etc/nginx/nginx.conf
-```bash
+```
 
 
 🌍 Domain & DNS Setup
@@ -59,6 +59,7 @@ Cloudflare proxies A records by default (extra security).
 
 🔐 SSL Certificate with Certbot
 Install dependencies:
+```bash
 
 sudo yum install -y epel-release
 sudo yum install -y certbot python3-certbot-nginx
@@ -75,6 +76,7 @@ server {
         try_files $uri $uri/ =404;
     }
 }
+```
 Request and apply SSL certificate:
 
 sudo certbot --nginx -d younesblog.org -d www.younesblog.org
@@ -85,13 +87,14 @@ Once successful, your site is both secure (HTTPS) and connected to your domain.
 
 
 🧾 Commands Used
+```bash
 
 sudo su
 yum update
 yum install nginx
 systemctl start nginx
 systemctl stop nginx
-
+```
 
 ⚠️ Note: Running as root (sudo su) is not best practice.
 It’s better to use sudo on a per-command basis for security.
