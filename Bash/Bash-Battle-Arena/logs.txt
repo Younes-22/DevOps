@@ -1,0 +1,9 @@
+Application startd
+: Invalid input detected
+File saved successfully
+: Processing data
+: Connection timed out
+ User logged in
+ Request recieved
+NG: Disk space low
+: API response: 200 OK

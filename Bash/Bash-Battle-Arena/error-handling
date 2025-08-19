@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+# exit code
+# command -v git 2>/dev/nill
+
+# if [[ $? -ne 0 ]]; then
+#     echo "Git is not installed. Please install Git to continue."
+#     exit 1
+# else 
+#     echo "Git is installed."
+# fi
+
+# FILE="/nonexistent"
+
+# if [[ -f "$FILE" ]]; then
+#     echo "File exists."
+# else
+#     echo "File does not exist."
+# fi
+
+
+# num1=10
+# num2=0
+
+# if [ $num2 -eq 0 ]; then
+#     echo "Error: Division by zero is not allowed."
+#     exit 1
+# fi
+
+# result=$((num1 / num2))
+
+# echo "The result is: $result"
