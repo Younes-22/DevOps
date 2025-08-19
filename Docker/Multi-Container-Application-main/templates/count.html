@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Counter</title>
+    <!-- Tailwind CSS used for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-cover bg-center" style="background-image: url('/static/images/background.jpg');">
+    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-50">
+        <!-- Main content card -->
+        <div class="text-center p-8 sm:p-12 bg-white/10 backdrop-blur-md rounded-2xl shadow-lg border border-white/20">
+            <p class="text-lg text-gray-200 mb-2">This page has been visited</p>
+            <!-- The visit count, styled to be large and prominent -->
+            <h1 class="text-7xl sm:text-8xl font-black text-white mb-8 tracking-tight">
+                {{ count }}
+            </h1>
+            <p class="text-lg text-gray-200 mb-8">times.</p>
+            <!-- This is a link styled as a button -->
+            <a href="/" class="inline-block bg-teal-500 text-white font-bold py-3 px-8 rounded-xl hover:bg-teal-600 focus:outline-none focus:ring-4 focus:ring-teal-300 transition-all duration-300 transform hover:scale-105">
+                Back to Home
+            </a>
+            
+        </div>
+    </div>
+</body>
+</html>
