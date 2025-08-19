@@ -1,0 +1,12 @@
+The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost. 
+
+ 
+To get the password via cat etc/bandit_pass_bandit14 
+
+ 
+
+Now to connect I need to use nc aka netcat 
+
+nc localhost 3000 
+
+Then add the password 

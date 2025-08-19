@@ -1,0 +1,13 @@
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters. 
+
+To solve this, I need to use the strings and grep commands 
+
+Since I want human readable, strings command to only give me human readable data 
+
+So its strings data.txt | grep == 
+
+Grep == shows me the line where == is used, hence I find the password 
+
+ 
+
+ 

@@ -1,0 +1,5 @@
+Look inside a – file 
+
+To do so simply cat – won't work  
+
+I need to do cat ./- which is the directory I'm in 

@@ -1,0 +1,21 @@
+To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary. 
+
+ 
+
+To do this, I use the bandit20-do executble which gives me permissions 
+
+ 
+
+Whist it runs I can cat into the file bandit20 and get the password 
+
+ 
+
+Also do ./bandit20-do id 
+
+This gives me the group id 
+
+But why do I need it? 
+
+ 
+
+So it's: ./bandit20-do id=11019 cat /etc/bandit_pass/bandit20 

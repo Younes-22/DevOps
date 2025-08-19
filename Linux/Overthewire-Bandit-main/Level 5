@@ -1,0 +1,24 @@
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties: 
+
+ human-readable 
+
+1033 bytes in size  
+
+not executable 
+
+
+Here's how to do it: 
+
+Use the find command t 
+
+Find . -readable –size 1033c ! -executable 
+
+ 
+
+The . After find means search in the current directory 
+
+If I wasn’t in the inhere directory, I would have inhere instead of . 
+
+ 
+
+The c stands for bytes as in character bytes in 1033 

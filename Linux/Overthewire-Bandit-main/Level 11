@@ -1,0 +1,25 @@
+The password for the next level is stored in the file data.txt, which contains base64 encoded data 
+
+ 
+
+ROT13 
+
+ 
+
+The solution requires the use of tr which is for translating or deleting characters 
+
+ 
+
+First do cat data.txt to take the characters within. Use a pipeline and tr to set the alphabet in normal order both in lower and upper case, then for the second argument do it in rot13 order 
+
+ 
+
+e.g. cat data.txt | tr abcd…ABCD… nopqr…NOPQR 
+
+ 
+
+This'll translate and output the password 
+
+ 
+
+Alternatively using a-zA-Z instead of just typing the whole alphabet works too 

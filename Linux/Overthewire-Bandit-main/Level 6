@@ -1,0 +1,16 @@
+The password for the next level is stored somewhere on the server and has all of the following properties: 
+
+owned by user bandit7 
+
+owned by group bandit6 
+
+33 bytes in size 
+
+
+To solve this use the find command 
+
+So do find / -user bandit -group bandit6 -size 33c 
+
+The / will start the search from the root directory 
+
+After that find the file that dosent have permission denied and cat into it 

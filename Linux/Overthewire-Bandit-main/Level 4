@@ -1,0 +1,16 @@
+The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command. 
+
+
+You can do it by going manually file by file 
+
+e.g. cat ,/-file00 until you find the right one 
+
+
+This can also be done with a loop: 
+
+For x in `find inhere –type f –print`; do file $x; done 
+ 
+
+This shows weathers the files contains data or human readable text 
+
+ 

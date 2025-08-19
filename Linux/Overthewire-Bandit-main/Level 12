@@ -1,0 +1,63 @@
+Cd on its own lets you move back to the root directory 
+
+ 
+
+Xxd to referse a hex dump via xxd -r data.txt data2.txt 
+
+ 
+
+Stores it in data2.txt 
+
+ 
+
+Use file data2.txt to find how the data was compressed. In this case it's gzip compressed that was previously data2.bin 
+
+ 
+
+So lets rename the data2.txt to what it should be 
+
+ 
+
+ 
+
+Mv data2.txt data2.bin.gz 
+
+ 
+
+Now we do gunzip data2.bin.gz to uncompress it 
+
+ 
+
+Now its no longer gzip compress. However when we do fiel data2.bin, we see that it's bzip2 compressed 
+
+ 
+
+So we repeat but with bzip instead 
+
+ 
+
+Mv data2.bin data2.bin.bz2 
+
+ 
+
+Bunzip2 data2.txt 
+
+ 
+
+Again this is gzip compressed so we do the same except it says it was previously data4.bin so we call it that 
+
+ 
+
+After unzipping and doing file data4.bin, we see it’s a POSIX tar archive  
+
+ 
+
+So same presdure make it mv data4.bin.tar 
+
+ 
+
+To unzip do tar -xf data4.bin.tar 
+
+ 
+
+And keep unzipping until the files becomes ascii text and you can get the password 
