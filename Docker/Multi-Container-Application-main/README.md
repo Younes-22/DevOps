@@ -39,3 +39,7 @@ The expose directive in the docker-compose.yml file makes the Flask service's po
 To scale the Flask service to three instances for example, you can use the following command:
 
 docker-compose up --scale flask=3
+
+## Screen
+![App Screenshot Home](../images/VisitPulse.png)
+![App Screenshot Count](../images/VisitPulse2.png)
