@@ -1,0 +1,27 @@
+# Local Terraform files
+*.tfstate
+*.tfstate.*
+*.tfvars        
+crash.log
+
+# Terraform plan files
+*.tfplan
+
+# Backup and temporary files
+*.backup
+*.tmp
+*.swp
+*.bak
+
+# CLI configuration
+**/.terraform/
+.terraform.lock.hcl
+
+# IDE/editor specific
+.vscode/
+.idea/
+*.iml
+
+# Optional: OS files
+.DS_Store
+Thumbs.db
