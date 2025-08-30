@@ -40,8 +40,6 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-
-
 # Route Table
 resource "aws_route_table" "route_table" {
   vpc_id = aws_vpc.vpc_terraform.id

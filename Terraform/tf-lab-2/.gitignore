@@ -14,7 +14,8 @@ crash.log       # crash logs
 *.bak
 
 # CLI configuration
-.terraform/     # local plugin and module downloads
+**/.terraform/
+.terraform/
 .terraform.lock.hcl
 
 # IDE/editor specific
