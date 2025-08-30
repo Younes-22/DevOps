@@ -2,6 +2,7 @@
 vpc_cidr            = "10.0.0.0/16"
 public_subnet_cidr  = "10.0.0.0/24"
 private_subnet_cidr = "10.0.1.0/24"
+private_subnet2_cidr = "10.0.2.0/24"
 availability_zone_2a   = "eu-west-2a"
 availability_zone_2b   = "eu-west-2b"
 global_ipv4_cidr    = "0.0.0.0/0"

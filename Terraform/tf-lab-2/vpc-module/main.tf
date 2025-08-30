@@ -32,17 +32,34 @@ resource "aws_subnet" "private_subnet1" {
 # Private Subnet 2
 resource "aws_subnet" "private_subnet2" {
   vpc_id            = aws_vpc.this.id
-  cidr_block        = "10.0.2.0/24" # You can adjust this
+  cidr_block        = var.private_subnet2_cidr
   availability_zone = var.availability_zone_2b
   tags = {
     Name = "private-subnet-2"
   }
 }
+# Internet Gateway
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.this.id
+  tags = {
+    Name = "wordpress-igw"
+  }
+}
 
-# Route table, Internet Gateway, and other networking resources...
+# Route Table for Public Subnet
+resource "aws_route_table" "rt" {
+  vpc_id = aws_vpc.this.id
 
-# RDS Subnet Group
-resource "aws_db_subnet_group" "this" {
-  name       = "wordpress-rds-subnet-group"
-  subnet_ids = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
+  route {
+    cidr_block = var.global_ipv4_cidr
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = {
+    Name = "example"
+  }
+}
+resource "aws_route_table_association" "public_assoc" {
+  subnet_id      = aws_subnet.public_subnet1.id
+  route_table_id = aws_route_table.rt.id
 }

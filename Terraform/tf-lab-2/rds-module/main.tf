@@ -36,12 +36,14 @@ resource "aws_db_instance" "this" {
   engine                 = var.engine
   engine_version         = var.engine_version
   instance_class         = var.db_instance_class
-  # name                   = var.db_name
   identifier             = var.identifier
   username               = var.db_username
   password               = var.db_password
   db_subnet_group_name   = aws_db_subnet_group.this.name
-  vpc_security_group_ids = [var.ec2_sg_id] # Use the passed-in security group ID
+  vpc_security_group_ids = [aws_security_group.rds_sg.id] # Attach the RDS security group
   publicly_accessible    = false
   skip_final_snapshot    = true
+  tags = {
+    Name = var.identifier
+  }
 }

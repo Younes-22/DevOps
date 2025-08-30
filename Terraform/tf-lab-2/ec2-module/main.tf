@@ -2,7 +2,8 @@ resource "aws_instance" "WordpressEc2" {
   ami           = var.instance_ami
   instance_type = var.instance_type
   subnet_id     = var.subnet_id
-  vpc_security_group_ids = [aws_security_group.ec2_sg.id] # Use the passed-in security group ID
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id]
+  associate_public_ip_address = true
   # User data to configure the EC2 instance
   key_name               = "aws-labs"
   user_data              = <<-EOT
@@ -29,7 +30,7 @@ cd /var/www/html/
 cp wp-config-sample.php wp-config.php
 
 # Replace these values with your RDS configuration
-RDS_ENDPOINT=RDS_ENDPOINT="${var.rds_endpoint}"
+RDS_ENDPOINT="${var.rds_endpoint}"
 RDS_DB_NAME="${var.rds_db_name}"
 RDS_USERNAME="${var.rds_db_username}"
 RDS_PASSWORD="${var.rds_db_password}"

@@ -4,6 +4,7 @@ module "vpc" {
   vpc_cidr            = var.vpc_cidr
   public_subnet_cidr  = var.public_subnet_cidr
   private_subnet_cidr = var.private_subnet_cidr
+  private_subnet2_cidr = var.private_subnet2_cidr
   availability_zone_2a   = var.availability_zone_2a
   availability_zone_2b   = var.availability_zone_2b
   global_ipv4_cidr    = var.global_ipv4_cidr
@@ -20,7 +21,7 @@ module "ec2" {
   instance_type = var.instance_type
   subnet_id    = module.vpc.public_subnet_id
   vpc_id       = module.vpc.vpc_id
-}
+  }
 
 # RDS Module
 module "rds" {

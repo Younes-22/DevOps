@@ -7,5 +7,7 @@ output "WordpressEc2_instance_id" {
   description = "The ID of the EC2 instance"
 }
 output "ec2_sg_id" {
-  value = aws_security_group.ec2_sg.id
+  description = "The security group ID for the EC2 instance(s)"
+  value       = aws_security_group.ec2_sg.id
 }
+
