@@ -1,68 +1,48 @@
+# This is a conceptual example for your vpc-module
+# vpc-module/main.tf
+
 # VPC
-resource "aws_vpc" "vpc_terraform" {
-  cidr_block       = var.vpc_cidr
-  instance_tenancy = "default"
-
+resource "aws_vpc" "this" {
+  cidr_block = var.vpc_cidr
   tags = {
-    Name = "main-vpc"
+    Name = "wordpress-vpc"
   }
 }
 
-# Public Subnet
-resource "aws_subnet" "public_subnet" {
-  vpc_id     = aws_vpc.vpc_terraform.id
-  availability_zone = var.availability_zone
-  cidr_block = var.public_subnet_cidr
-  map_public_ip_on_launch = true #Enable auto-assign public IP in the subnet
-
+# Public Subnet 1
+resource "aws_subnet" "public_subnet1" {
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = var.public_subnet_cidr
+  availability_zone = var.availability_zone_2a
   tags = {
-    Name = "public-subnet"
+    Name = "public-subnet-1"
   }
 }
 
-# Private Subnet
-resource "aws_subnet" "private_subnet" {
-  vpc_id     = aws_vpc.vpc_terraform.id
-  availability_zone = var.availability_zone
-  cidr_block = var.private_subnet_cidr
-
+# Private Subnet 1
+resource "aws_subnet" "private_subnet1" {
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = "10.0.1.0/24" # You can adjust this to your liking
+  availability_zone = var.availability_zone_2a
   tags = {
-    Name = "private-subnet"
+    Name = "private-subnet-1"
   }
 }
 
-# Internet Gateway
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc_terraform.id
-
+# Private Subnet 2
+resource "aws_subnet" "private_subnet2" {
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = "10.0.2.0/24" # You can adjust this
+  availability_zone = var.availability_zone_2b
   tags = {
-    Name = "Internet-Gateway"
+    Name = "private-subnet-2"
   }
 }
 
-# Route Table
-resource "aws_route_table" "route_table" {
-  vpc_id = aws_vpc.vpc_terraform.id
+# Route table, Internet Gateway, and other networking resources...
 
-  route {
-    cidr_block = var.global_ipv4_cidr
-    gateway_id = aws_internet_gateway.igw.id
-  }
-
-  tags = {
-    Name = "tf-public-route-table"
-  }
+# RDS Subnet Group
+resource "aws_db_subnet_group" "this" {
+  name       = "wordpress-rds-subnet-group"
+  subnet_ids = [aws_subnet.private_subnet1.id, aws_subnet.private_subnet2.id]
 }
-
-# Route Table Association
-resource "aws_route_table_association" "rta_public" {
-  subnet_id      = aws_subnet.public_subnet.id
-  route_table_id = aws_route_table.route_table.id
-}
-
-
-# Security Group
-
-# Elastic IP//
-
-# NAT Gateway //

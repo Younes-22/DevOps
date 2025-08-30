@@ -1,8 +1,9 @@
 resource "aws_instance" "WordpressEc2" {
-  ami                    = var.instance_ami
-  instance_type          = var.instance_type
-  subnet_id              = var.subnet_id
-  security_groups = [aws_security_group.ec2_sg.id]
+  ami           = var.instance_ami
+  instance_type = var.instance_type
+  subnet_id     = var.subnet_id
+  vpc_security_group_ids = [aws_security_group.ec2_sg.id] # Use the passed-in security group ID
+  # User data to configure the EC2 instance
   key_name               = "aws-labs"
   user_data              = <<-EOT
 #!/bin/bash
@@ -28,10 +29,10 @@ cd /var/www/html/
 cp wp-config-sample.php wp-config.php
 
 # Replace these values with your RDS configuration
-RDS_ENDPOINT=RDS_ENDPOINT="${module.rds.db_instance_endpoint}"
-RDS_DB_NAME="${module.rds.db_name}"
-RDS_USERNAME="${module.rds.db_username}"
-RDS_PASSWORD="${module.rds.db_password}"
+RDS_ENDPOINT=RDS_ENDPOINT="${var.rds_endpoint}"
+RDS_DB_NAME="${var.rds_db_name}"
+RDS_USERNAME="${var.rds_db_username}"
+RDS_PASSWORD="${var.rds_db_password}"
 
 sed -i "s/database_name_here/$RDS_DB_NAME/" wp-config.php
 sed -i "s/username_here/$RDS_USERNAME/" wp-config.php
@@ -51,42 +52,33 @@ systemctl restart apache2
   }
 }
 
-
 resource "aws_security_group" "ec2_sg" {
-  name        = "ec2-security-group"
-  description = "Allow HTTP/HTTPS inbound and all outbound"
-  vpc_id      = var.vpc_id
+  name        = "ec2-sg"
+  description = "Security group for EC2 instances (WordPress)"
+  vpc_id = var.vpc_id
 
+  # Allow HTTP from anywhere
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-    description = "Allow HTTP from anywhere"
   }
 
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    description = "Allow HTTPS from anywhere"
-  }
-
-  # Optional SSH for troubleshooting
+  # Allow SSH
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["51.14.123.107/32"]
-    description = "Allow SSH from my IP"
+    cidr_blocks = ["0.0.0.0/0"]  
   }
 
+  # Allow outbound to anywhere (default)
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
-    description = "Allow all outbound traffic"
   }
 }
+

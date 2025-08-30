@@ -14,9 +14,16 @@ variable "private_subnet_cidr" {
   description = "The CIDR block for the private subnet"
 }
 
-variable "availability_zone" {
+variable "availability_zone_2a" {
   type        = string
-  description = "The availability zone for the subnets"
+  description = "The availability zone 2a for the subnets"
+  default     = "eu-west-2a"
+}
+
+variable "availability_zone_2b" {
+  type        = string
+  description = "The availability zone 2b for the subnets"
+  default     = "eu-west-2b"
 }
 
 variable "global_ipv4_cidr" {
@@ -28,11 +35,6 @@ variable "global_ipv4_cidr" {
 variable "instance_ami" {
   type        = string
   description = "The AMI ID for the EC2 instance"
-}
-
-variable "subnet_id" {
-  type        = string
-  description = "The Subnet ID to launch the instance in"
 }
 
 variable "instance_type" {
@@ -91,19 +93,4 @@ variable "engine" {
 variable "engine_version" {
   type        = string
   default     = "8.0"
-}
-
-variable "private_subnet_ids" {
-  type        = list(string)
-  description = "List of private subnet IDs for RDS subnet group"
-}
-
-variable "vpc_id" {
-  type        = string
-  description = "VPC ID where RDS will be deployed"
-}
-
-variable "ec2_sg_id" {
-  type        = string
-  description = "Security group ID of the EC2 instances that can access RDS"
 }
